@@ -18,7 +18,7 @@ const Header = () => {
         <NavLink to="/all-bills">Bills</NavLink>
       </li>
       <li>
-        <NavLink to="/my-collection">My Pay Bills</NavLink>
+        <NavLink to="/my-bills">My Pay Bills</NavLink>
       </li>
     </>
   );
@@ -34,7 +34,7 @@ const Header = () => {
     </>
   );
   return (
-    <nav className="">
+    <nav className="relative">
       <div className="navbar bg-base-100 shadow-sm">
         <div className="max-w-7xl mx-auto navbar">
           <div className="navbar-start">
@@ -78,7 +78,7 @@ const Header = () => {
           </div>
           <div className="navbar-end space-x-2">{authBtn}</div>
         </div>
-        <label className="swap swap-rotate">
+        <label className="swap swap-rotate bg-primary fixed z-50 text-primary-content right-0 w-fit p-3 rounded-l-4xl">
           {/* this hidden checkbox controls the state */}
           <input
             type="checkbox"

@@ -18,14 +18,14 @@ body {
 }
 section,
 .footer-max {
-  @apply max-w-[1400px] mx-auto;
+  @apply max-w-[1280px] mx-auto px-5 md:px-0;
 }
 .full-section {
-  @apply w-full;
+  @apply max-w-full;
 }
 
 /*Custom styles*/
-.page-route li {
+.page-route li a {
   @apply text-xl;
   position: relative;
   &:after {
@@ -38,8 +38,41 @@ section,
     background-color: var(--color-primary);
     transform: scaleX(0);
     transition: transform 0.3s ease-in-out;
+    border-radius: 20px;
   }
   &:hover:after {
     transform: scaleX(1);
   }
+  &.active:after {
+    transform: scaleX(1);
+  }
+}
+/* Navigation Arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-primary) !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: var(--color-primary-light); /* blue-800 on hover */
+}
+
+/* Optional: Make them larger */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 28px; /* default is 20px */
+}
+/* Pagination bullets (inactive) */
+.swiper-pagination-bullet {
+  background-color: var(--color-primary) !important; /* gray-300 */
+  opacity: 1; /* make sure it's visible */
+}
+
+/* Active bullet color */
+.swiper-pagination-bullet-active {
+  background-color: var(--color-primary) !important; /* blue-600 */
+  transform: scale(1.2);
+  transition: all 0.3s ease;
 }
