@@ -5,6 +5,11 @@
     corporate --default,
     dim --prefersdark;
 }
+@plugin "daisyui/theme" {
+  name: "corporate";
+  color-scheme: "light";
+  --color-base-300: oklch(100% 0.003 247.858);
+}
 /*daisy ui customization*/
 @utility btn {
   @apply rounded-full;
@@ -12,16 +17,19 @@
 @utility footer-title {
   @apply text-primary text-2xl font-bold;
 }
+@utility card {
+  @apply rounded-lg shadow-lg border border-base-200;
+}
 /*Global Styles*/
 body {
-  @apply bg-base-100 text-base-content;
+  @apply bg-base-300 text-base-content;
 }
 section,
 .footer-max {
-  @apply max-w-[1280px] mx-auto px-5 md:px-0;
+  @apply max-w-[1280px] mx-auto px-5 md:px-0 py-20;
 }
 .full-section {
-  @apply max-w-full;
+  @apply max-w-full pt-0;
 }
 
 /*Custom styles*/
