@@ -1,8 +1,9 @@
 import React from "react";
 import { FaMapMarkerAlt, FaCalendarAlt, FaTags } from "react-icons/fa";
+import { NavLink } from "react-router";
 
 const BillCard = ({ bill }) => {
-  const { title, category, location, date, image } = bill;
+  const { title, category, location, date, image, _id } = bill;
 
   return (
     <div className="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 border border-base-200 w-full max-w-sm">
@@ -27,7 +28,9 @@ const BillCard = ({ bill }) => {
         </div>
 
         <div className="card-actions justify-end mt-4">
-          <button className="btn btn-primary btn-sm">View Details</button>
+          <NavLink to={`/bills/${_id}`} className="btn btn-primary btn-sm">
+            View Details
+          </NavLink>
         </div>
       </div>
     </div>
