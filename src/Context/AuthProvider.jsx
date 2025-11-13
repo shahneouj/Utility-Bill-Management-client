@@ -49,6 +49,7 @@ const AuthProvider = ({ children }) => {
       // console.log(userCredential);
 
       setUser(userCredential.user);
+      return userCredential.user;
     } catch (error) {
       console.error(error);
     }
@@ -64,7 +65,7 @@ const AuthProvider = ({ children }) => {
   }, []);
   const logout = async () => {
     try {
-      await signOut();
+      await signOut(auth);
       setUser(null);
     } catch (error) {
       console.error(error);

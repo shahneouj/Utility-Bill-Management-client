@@ -10,7 +10,6 @@ const Register = () => {
     use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
-
   const userpost = useAxios();
   const handleUser = (e) => {
     e.preventDefault();
@@ -29,9 +28,18 @@ const Register = () => {
         console.error(error);
       });
   };
-  const google = async () => {
-    await googleLogin();
-    navigate(location?.state || "/");
+  const google = () => {
+    googleLogin().then((res) => {
+      const newUser = {
+        name: res.displayName,
+        email: res.email,
+        image: res.photoURL,
+      };
+      userpost.post("/user", newUser).then(() => {
+        console.log("user", newUser);
+        navigate(location?.state || "/");
+      });
+    });
   };
   return (
     <>

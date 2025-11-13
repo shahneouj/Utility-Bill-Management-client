@@ -5,6 +5,8 @@ import useAxios from "../../Hooks/AxiosN";
 const PayBillModal = ({ bill, isOpen, onClose, user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const paymentPost = useAxios();
+  console.log(user.email);
+
   // New state for additional fields
   const [formData, setFormData] = useState({
     billId: bill._id || "",
@@ -153,6 +155,7 @@ const PayBillModal = ({ bill, isOpen, onClose, user }) => {
             <button
               type="submit"
               className={`btn btn-success ${isLoading ? "loading" : ""}`}
+              onClick={onClose}
             >
               {isLoading ? "Processing..." : "Pay Now"}
             </button>

@@ -9,8 +9,11 @@ import {
 } from "react-icons/fa";
 import Loader from "../../Component/Loader/Loader";
 import PayBillModal from "../../Component/PayBillModal/PayBillModal";
+import { AuthContext } from "../../Context/AuthContext";
+import { use } from "react";
 
 const BillDetails = () => {
+  const { user } = use(AuthContext);
   const { id } = useParams();
   const [bill, setBill] = useState(null);
   const billDetails = useAxios();
@@ -38,6 +41,7 @@ const BillDetails = () => {
         bill={bill}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
+        user={user}
       />
       <div className="max-w-3xl mx-auto bg-base-100 shadow-xl rounded-2xl p-4 sm:p-6 lg:p-8 my-6 md:my-10 border border-base-200">
         {/* Header */}

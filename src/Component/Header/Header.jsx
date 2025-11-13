@@ -1,14 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router";
-
+import React, { useEffect, useState, use } from "react";
+import { NavLink, Link } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
+import { useNavigate } from "react-router";
+import { FaUserCircle } from "react-icons/fa";
 const Header = () => {
+  const { logout, user } = use(AuthContext);
+  const navigate = useNavigate();
+
   const [isdark, setIsdark] = useState(
     JSON.parse(localStorage.getItem("isdark")),
   );
   useEffect(() => {
     localStorage.setItem("isdark", JSON.stringify(isdark));
   }, [isdark]);
-
+  const handelLogout = async () => {
+    await logout();
+    // toast.success('singout')
+    navigate("/");
+  };
   const links = (
     <>
       <li>
@@ -31,6 +40,21 @@ const Header = () => {
       <NavLink className=" btn btn-primary" to="/register">
         Register
       </NavLink>
+    </>
+  );
+  const singoutLink = (
+    <>
+      {user && (
+        <img
+          src={user.photoURL}
+          className="rounded-full size-10 border-2 border-black "
+          title={user.displayName}
+        />
+      )}
+      <Link onClick={handelLogout} className="btn btn-primary hidden md:flex">
+        {" "}
+        Sing Out
+      </Link>
     </>
   );
   return (
@@ -76,7 +100,9 @@ const Header = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="flex gap-5 page-route px-1">{links}</ul>
           </div>
-          <div className="navbar-end space-x-2">{authBtn}</div>
+          <div className="navbar-end space-x-2">
+            {user ? singoutLink : authBtn}
+          </div>
         </div>
         <label className="swap swap-rotate bg-primary fixed z-50 text-primary-content right-0 w-fit p-3 rounded-l-4xl">
           {/* this hidden checkbox controls the state */}

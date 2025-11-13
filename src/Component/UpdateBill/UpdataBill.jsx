@@ -79,7 +79,7 @@ const UpdateBill = ({ bill, isOpen, onClose, user, setNewUpdate }) => {
                 type="email"
                 name="email"
                 className="input input-bordered w-full"
-                value={formData.email}
+                value={bill.email}
                 readOnly
               />
             </div>
@@ -112,7 +112,7 @@ const UpdateBill = ({ bill, isOpen, onClose, user, setNewUpdate }) => {
                 name="username"
                 className="input input-bordered w-full"
                 placeholder="Enter your name"
-                value={formData.username}
+                value={bill.username}
                 onChange={handleChange}
                 required
               />
