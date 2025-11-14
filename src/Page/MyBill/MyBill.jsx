@@ -9,7 +9,11 @@ import autoTable from "jspdf-autotable";
 const MyBill = () => {
   const mybillfetch = useAxios();
   const [bills, setBills] = useState([]);
+  const totalBills = bills.length;
 
+  const totalAmount = bills.reduce((sum, bill) => {
+    return sum + Number(bill.amount);
+  }, 0);
   useEffect(() => {
     mybillfetch.get("/payment").then((response) => {
       setBills(response.data);
@@ -106,7 +110,7 @@ const MyBill = () => {
             <p className="text-sm text-base-content/60">payment details</p>
           </div>
           <button className="btn btn-primary" onClick={downloadBillsTablePdf}>
-            Add New
+            Download PDF
           </button>
         </div>
 
@@ -144,6 +148,20 @@ const MyBill = () => {
                   </td>
                 </tr>
               )}
+              <tr className="p-4 mb-4 bg-base-200 rounded-xl flex justify-between">
+                <td>
+                  <p className="text-lg font-semibold">
+                    Total Bills Paid:{" "}
+                    <span className="text-primary">{totalBills}</span>
+                  </p>
+                  <p className="text-lg font-semibold">
+                    Total Amount:{" "}
+                    <span className="text-primary">
+                      ৳{totalAmount.toLocaleString()}
+                    </span>
+                  </p>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

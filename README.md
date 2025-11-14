@@ -1,16 +1,62 @@
-# React + Vite
+# ( সহজ সরল সিম্পল ) ASSIGNMENT-010  
+**Bill Management System** – Programming Hero
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Features
+- **Email & Google Login** (Firebase Authentication)
+- **Add, Pay, Edit, Delete Bills**
+- **View All Bills** (with category filter & limit)
+- **Payment History** (per user)
+- **Download PDF Bills** (using `jsPDF` + `autoTable`)
+- **Responsive Design** (Mobile + Desktop)
+- **Dark / Light Mode Toggle**
+- **Toast Notifications** (`react-hot-toast`)
+- **Beautiful UI** with **Tailwind CSS + DaisyUI**
+- **Smooth Navigation** with **React Router**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Layer        | Technology |
+|-------------|------------|
+| **Frontend** | React, Vite, Tailwind CSS, DaisyUI |
+| **UI/UX**    | React Icons, Swiper, SweetAlert2 |
+| **Auth**     | Firebase |
+| **State**    | React Router, Context (optional) |
+| **Backend**  | Node.js, Express, MongoDB |
+| **PDF**      | jsPDF, jsPDF-AutoTable |
+| **HTTP**     | Axios |
+| **Dev Tools**| ESLint, Vite Plugin React |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## How to Run
+
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Set up environment variables (`.env` file):
+   - `VITE_FIREBASE_API_KEY` and other Firebase config
+   - `MONGODB_URI` for MongoDB connection
+4. Start the backend server with `node server.js`
+5. Run the frontend with `npm run dev`
+6. Open `http://localhost:5173` in your browser
+
+## Screenshots
+
+(Add screenshots here)
+
+## GitHub
+
+https://github.com/shahneouj/Utility-Bill-Management-client
+
+## Live Link
+
+https://bill-management-43979.web.app/
+
+## License
+
+This project is for educational purposes.
+
+---

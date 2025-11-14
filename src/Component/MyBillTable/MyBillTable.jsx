@@ -5,7 +5,7 @@ import UpdateBill from "../UpdateBill/UpdataBill";
 import { AuthContext } from "../../Context/AuthContext";
 import { use } from "react";
 
-const MyBillTable = ({ bill, handleCancel, handlePdf }) => {
+const MyBillTable = ({ bill, handleCancel }) => {
   const { user } = use(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
   const [newUpdate, setNewUpdate] = useState(bill);

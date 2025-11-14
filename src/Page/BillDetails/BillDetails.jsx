@@ -25,7 +25,10 @@ const BillDetails = () => {
   }, [billDetails, id]);
 
   const handlePayBill = () => {
-    setIsModalOpen(true);
+    if (bill.date > new Date().toISOString()) {
+      setIsModalOpen(true);
+      return;
+    }
   };
 
   const handleCloseModal = () => {
@@ -115,9 +118,9 @@ const BillDetails = () => {
         <div className="mt-6 flex justify-end gap-3 border-t border-base-300 pt-4">
           <button
             onClick={handlePayBill}
-            className="btn btn-outline btn-primary btn-sm"
+            className={`btn ${bill.date > new Date().toISOString() ? "btn-outline" : "opacity-25 cursor-not-allowed "} btn-primary btn-sm`}
           >
-            Pay Bill
+            {bill.date > new Date().toISOString() ? "Pay Bill" : "Date expired"}
           </button>
         </div>
       </div>
