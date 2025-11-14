@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import { useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 const Login = () => {
   const { login, user, googleLogin } = use(AuthContext);
   const location = useLocation();
@@ -11,12 +12,14 @@ const Login = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
+
     await login(email, password);
+    toast.success("Login successful");
     navigate(location.state?.from || "/");
-    console.log(user);
   };
   const handleGoogle = async () => {
     await googleLogin();
+    toast.success("Login successful");
     navigate(location?.state || "/");
   };
 

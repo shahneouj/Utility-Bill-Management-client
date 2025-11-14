@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import MyBillTable from "../../Component/MyBillTable/MyBillTable.jsx";
 import useAxios from "../../Hooks/AxiosN.jsx";
 import { useState } from "react";
+import { jsPDF } from "jspdf";
+import Swal from "sweetalert2";
+import autoTable from "jspdf-autotable";
 
 const MyBill = () => {
   const mybillfetch = useAxios();
@@ -12,13 +15,85 @@ const MyBill = () => {
       setBills(response.data);
     });
   }, [mybillfetch]);
+  const downloadBillsTablePdf = () => {
+    if (!bills || bills.length === 0) return;
 
-  const handleCancel = (billId) => {
-    console.log(billId);
-    const newBills = bills.filter((bill) => bill._id !== billId);
-    setBills(newBills);
-    mybillfetch.delete(`/payment/${billId}`);
-    console.log(bills);
+    const doc = new jsPDF();
+
+    // Title
+    doc.setFontSize(18);
+    doc.text("My Paid Bills", 14, 15);
+
+    doc.setFontSize(11);
+    doc.text("Payment details", 14, 23);
+
+    // Table headers
+    const tableColumn = [
+      "Username",
+      "Email",
+      "Amount",
+      "Address",
+      "Phone",
+      "Date",
+    ];
+
+    // Table rows
+    const tableRows = bills.map((bill) => [
+      bill.username,
+      bill.email,
+      `$${bill.amount}`,
+      bill.address,
+      bill.phone,
+      new Date(bill.date).toLocaleDateString(),
+    ]);
+
+    // Auto table
+    autoTable(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: 30,
+      styles: {
+        lineWidth: 0.2,
+        cellPadding: 3,
+      },
+      headStyles: {
+        fillColor: [240, 240, 240], // light gray like UI
+        textColor: 0,
+        fontStyle: "bold",
+      },
+      alternateRowStyles: {
+        fillColor: [255, 255, 255],
+      },
+      tableLineColor: [200, 200, 200],
+      tableLineWidth: 0.2,
+    });
+
+    // Save
+    doc.save("Bills_Table.pdf");
+  };
+
+  const handleCancel = async (billId) => {
+    await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const newBills = bills.filter((bill) => bill._id !== billId);
+        setBills(newBills);
+
+        mybillfetch.delete(`/payment/${billId}`);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
   };
   return (
     <section>
@@ -30,7 +105,9 @@ const MyBill = () => {
             </h2>
             <p className="text-sm text-base-content/60">payment details</p>
           </div>
-          <button className="btn btn-primary">Add New</button>
+          <button className="btn btn-primary" onClick={downloadBillsTablePdf}>
+            Add New
+          </button>
         </div>
 
         {/* Table */}

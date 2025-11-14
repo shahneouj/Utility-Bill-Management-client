@@ -6,7 +6,6 @@ import { FaUserCircle } from "react-icons/fa";
 const Header = () => {
   const { logout, user } = use(AuthContext);
   const navigate = useNavigate();
-
   const [isdark, setIsdark] = useState(
     JSON.parse(localStorage.getItem("isdark")),
   );
@@ -26,9 +25,11 @@ const Header = () => {
       <li>
         <NavLink to="/all-bills">Bills</NavLink>
       </li>
-      <li>
-        <NavLink to="/my-bills">My Pay Bills</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to="/my-bills">My Pay Bills</NavLink>
+        </li>
+      )}
     </>
   );
   const authBtn = (

@@ -14,7 +14,7 @@ import {
 import { useEffect } from "react";
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [loader, setLoader] = useState(true);
   const createUser = async (email, password) => {
     try {
@@ -23,9 +23,6 @@ const AuthProvider = ({ children }) => {
         email,
         password,
       );
-      console.log(userCredential.user);
-
-      setUser(userCredential.user);
     } catch (error) {
       console.error(error);
     }
@@ -34,11 +31,16 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, updateData);
   };
   const login = async (email, password) => {
+    setLoader(true);
     try {
-      const userCredential = await signInWithEmailAndPassword(email, password);
-      // console.log(userCredential);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      console.log(userCredential.user);
 
-      setUser(userCredential.user);
+      console.log("login page", user);
     } catch (error) {
       console.error(error);
     }
@@ -47,8 +49,6 @@ const AuthProvider = ({ children }) => {
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
       // console.log(userCredential);
-
-      setUser(userCredential.user);
       return userCredential.user;
     } catch (error) {
       console.error(error);
@@ -59,10 +59,8 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoader(false);
     });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+    return unsubscribe;
+  }, [user]);
   const logout = async () => {
     try {
       await signOut(auth);
@@ -84,7 +82,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <>
-      <AuthContext value={authinfo}>{children}</AuthContext>
+      <AuthContext.Provider value={authinfo}>{children}</AuthContext.Provider>
     </>
   );
 };

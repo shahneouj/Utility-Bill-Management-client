@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaMoneyBillWave, FaCreditCard, FaTimes } from "react-icons/fa";
 import useAxios from "../../Hooks/AxiosN";
+import toast from "react-hot-toast";
 const UpdateBill = ({ bill, isOpen, onClose, user, setNewUpdate }) => {
   const [isLoading, setIsLoading] = useState(false);
   const update = useAxios();
@@ -29,8 +30,9 @@ const UpdateBill = ({ bill, isOpen, onClose, user, setNewUpdate }) => {
       await update.patch(`/payment/${bill._id}`, formData);
       setNewUpdate(formData);
       onClose();
+      toast.success("Update Successfully");
     } catch (error) {
-      console.error(error);
+      toast.error("Update error", error);
     } finally {
       setIsLoading(false);
     }
@@ -99,8 +101,8 @@ const UpdateBill = ({ bill, isOpen, onClose, user, setNewUpdate }) => {
               <input
                 type="text"
                 className="input input-bordered w-full"
-                value={`$${bill?.amount}`}
-                readOnly
+                defaultValue={`$${bill?.amount}`}
+                onChange={handleChange}
               />
             </div>
 
@@ -113,8 +115,7 @@ const UpdateBill = ({ bill, isOpen, onClose, user, setNewUpdate }) => {
                 className="input input-bordered w-full"
                 placeholder="Enter your name"
                 value={bill.username}
-                onChange={handleChange}
-                required
+                readOnly
               />
             </div>
 
@@ -125,7 +126,7 @@ const UpdateBill = ({ bill, isOpen, onClose, user, setNewUpdate }) => {
                 name="address"
                 className="input input-bordered w-full"
                 placeholder="Enter your address"
-                value={formData.address}
+                defaultValue={formData.address}
                 onChange={handleChange}
                 required
               />

@@ -18,12 +18,11 @@ const BillDetails = () => {
   const [bill, setBill] = useState(null);
   const billDetails = useAxios();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => {
     billDetails.get(`/bills/${id}`).then((response) => {
       setBill(response.data);
     });
-  }, [id]);
+  }, [billDetails, id]);
 
   const handlePayBill = () => {
     setIsModalOpen(true);

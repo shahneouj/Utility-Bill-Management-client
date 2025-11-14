@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { FaMoneyBillWave, FaCreditCard, FaTimes } from "react-icons/fa";
 import useAxios from "../../Hooks/AxiosN";
+import { CgLogOff } from "react-icons/cg";
+import toast from "react-hot-toast";
 
 const PayBillModal = ({ bill, isOpen, onClose, user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const paymentPost = useAxios();
-  console.log(user.email);
 
   // New state for additional fields
   const [formData, setFormData] = useState({
@@ -32,15 +33,18 @@ const PayBillModal = ({ bill, isOpen, onClose, user }) => {
   const handlePayment = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    console.log(formData);
+
     paymentPost
       .post("/payment", formData)
       .then((response) => {
-        console.log(response);
+        toast.success("Payment successful");
       })
       .catch((error) => {
-        console.error(error);
+        toast.error("Payment failed", error);
       });
     setIsLoading(false);
+    onClose();
   };
 
   return (
@@ -92,6 +96,7 @@ const PayBillModal = ({ bill, isOpen, onClose, user }) => {
               name="billId"
               className="input input-bordered w-full"
               value={bill?._id || ""}
+              readOnly
             />
           </div>
 
@@ -112,7 +117,7 @@ const PayBillModal = ({ bill, isOpen, onClose, user }) => {
               name="username"
               className="input input-bordered w-full"
               placeholder="Enter your name"
-              value={formData.username}
+              defaultValue={formData.username}
               onChange={handleChange}
               required
             />
@@ -125,7 +130,7 @@ const PayBillModal = ({ bill, isOpen, onClose, user }) => {
               name="address"
               className="input input-bordered w-full"
               placeholder="Enter your address"
-              value={formData.address}
+              defaultValue={formData.address}
               onChange={handleChange}
               required
             />
@@ -138,7 +143,7 @@ const PayBillModal = ({ bill, isOpen, onClose, user }) => {
               name="phone"
               className="input input-bordered w-full"
               placeholder="Enter phone number"
-              value={formData.phone}
+              defaultValue={formData.phone}
               onChange={handleChange}
               required
             />
@@ -155,7 +160,6 @@ const PayBillModal = ({ bill, isOpen, onClose, user }) => {
             <button
               type="submit"
               className={`btn btn-success ${isLoading ? "loading" : ""}`}
-              onClick={onClose}
             >
               {isLoading ? "Processing..." : "Pay Now"}
             </button>

@@ -5,27 +5,30 @@ import useAxios from "../../Hooks/AxiosN.jsx";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router";
 import { AiFillWindows } from "react-icons/ai";
+import toast from "react-hot-toast";
 const Register = () => {
   const { createUser, user, setUser, updateUser, googleLogin } =
     use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const userpost = useAxios();
-  const handleUser = (e) => {
+  const handleUser = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const name = e.target.name.value;
     const password = e.target.password.value;
     const photoUrl = e.target.photourl.value;
-    createUser(email, password);
+
+    await createUser(email, password);
     updateUser({ displayName: name, photoURL: photoUrl })
       .then(() => {
         setUser({ ...user, displayName: name, photoURL: photoUrl });
         userpost.post("/user", { email, name, password, photoUrl });
+        toast.success("Registration successful");
         navigate("/");
       })
       .catch((error) => {
-        console.error(error);
+        toast.error("Registration failed", error);
       });
   };
   const google = () => {
@@ -36,7 +39,7 @@ const Register = () => {
         image: res.photoURL,
       };
       userpost.post("/user", newUser).then(() => {
-        console.log("user", newUser);
+        toast.success("Registration successful");
         navigate(location?.state || "/");
       });
     });
