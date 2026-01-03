@@ -61,7 +61,11 @@ const Bills = () => {
         <h2 className="text-4xl font-bold mb-10  text-center">{category}</h2>
         <div className="card-wrpper grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {loading ? (
-            bills.map((bill, id) => <BillCard bill={bill} key={id} />)
+            bills.map((bill, id) => {
+
+
+              <BillCard bill={bill} key={id} />
+            })
           ) : (
             <Loader></Loader>
           )}

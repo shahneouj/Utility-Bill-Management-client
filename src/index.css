@@ -1,28 +1,35 @@
-@layer base , utilities;
+@layer base, utilities;
 
 @import "tailwindcss";
+
 @plugin "daisyui" {
   themes:
     corporate --default,
     dim --prefersdark;
 }
+
 @plugin "daisyui/theme" {
   name: "corporate";
   color-scheme: "light";
   --color-base-300: oklch(0.9759 0.0099 267.36);
 }
+
 /*daisy ui customization*/
 @utility btn {
   @apply rounded-full;
 }
+
 @utility footer-title {
   @apply text-primary text-2xl font-bold;
 }
+
 @utility card {
   @apply rounded-lg shadow-lg border border-base-200;
 }
+
 @layer base {
   .select {
+
     &:focus,
     &:focus-within {
       outline: none !important;
@@ -30,14 +37,17 @@
     }
   }
 }
+
 /*Global Styles*/
 body {
   @apply bg-base-300 text-base-content;
 }
+
 section,
 .footer-max {
   @apply max-w-[1280px] mx-auto px-5 md:px-0 py-20;
 }
+
 .full-section {
   @apply max-w-full pt-0 pb-0;
 }
@@ -46,6 +56,7 @@ section,
 .page-route li a {
   @apply text-xl;
   position: relative;
+
   &:after {
     content: "";
     position: absolute;
@@ -58,13 +69,16 @@ section,
     transition: transform 0.3s ease-in-out;
     border-radius: 20px;
   }
+
   &:hover:after {
     transform: scaleX(1);
   }
+
   &.active:after {
     transform: scaleX(1);
   }
 }
+
 /* Navigation Arrows */
 .swiper-button-next,
 .swiper-button-prev {
@@ -74,37 +88,75 @@ section,
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  color: var(--color-primary-light); /* blue-800 on hover */
+  color: var(--color-primary-light);
+  /* blue-800 on hover */
 }
 
 /* Optional: Make them larger */
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  font-size: 28px; /* default is 20px */
+  font-size: 28px;
+  /* default is 20px */
 }
+
 /* Pagination bullets (inactive) */
 .swiper-pagination-bullet {
-  background-color: var(--color-primary) !important; /* gray-300 */
-  opacity: 1; /* make sure it's visible */
+  background-color: var(--color-primary) !important;
+  /* gray-300 */
+  opacity: 1;
+  /* make sure it's visible */
 }
 
 /* Active bullet color */
 .swiper-pagination-bullet-active {
-  background-color: var(--color-primary) !important; /* blue-600 */
+  background-color: var(--color-primary) !important;
+  /* blue-600 */
   transform: scale(1.2);
   transition: all 0.3s ease;
 }
+
 .divider {
   @apply h-0.5 w-[70%] my-4 border-t border-base-200;
 }
+
 .filter {
   @apply flex gap-1.5 mb-4;
+
   & h3 {
     @apply text-xl font-bold;
   }
 }
+
 .loader {
   @apply col-start-2 col-end-3;
   align-self: center;
   justify-self: center;
+}
+
+/* navbar  */
+
+.nav-top-container {
+  display: flex;
+  gap: 20px;
+  background: hsl(var(--b1));
+  padding: 8px 20px;
+  border-radius: 9999px;
+}
+
+.nav-top-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: hsl(var(--bc));
+  transition: all 0.25s ease;
+}
+
+.nav-top-item:hover {
+  color: hsl(var(--p));
+}
+
+.nav-top-active {
+  color: hsl(var(--p));
+  font-weight: 600;
 }

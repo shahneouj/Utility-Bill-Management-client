@@ -45,9 +45,9 @@ export default function HeroSlider() {
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         navigation
         pagination={{ clickable: true }}
-        // autoplay={{ delay: 4000, disableOnInteraction: false }}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
         effect="fade"
-        // loop={true}
+        loop={true}
         className="h-full"
       >
         {slides.map((slide, index) => (

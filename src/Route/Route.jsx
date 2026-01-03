@@ -7,6 +7,8 @@ import Bills from "../Page/Bills/Bills";
 import Home from "../Page/Home/Home";
 import BillDetails from "../Page/BillDetails/BillDetails";
 import Loader from "../Component/Loader/Loader";
+import About from "../Page/About/About";
+import ContactUs from "../Page/ContactUs/ContactUs";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +36,13 @@ export const router = createBrowserRouter([
         path: "/my-bills",
         element: <MyBill></MyBill>,
       },
+      {
+        path: "/about",
+        element: <About />,
+      }, {
+        path: "/contactus",
+        element: <ContactUs />,
+      }
     ],
   },
 ]);
