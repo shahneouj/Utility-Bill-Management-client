@@ -64,7 +64,7 @@ const Bills = () => {
             bills.map((bill, id) => {
 
 
-              <BillCard bill={bill} key={id} />
+              return <BillCard bill={bill} key={id} />
             })
           ) : (
             <Loader></Loader>

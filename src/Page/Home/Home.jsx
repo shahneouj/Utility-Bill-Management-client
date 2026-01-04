@@ -12,6 +12,7 @@ import {
   FaSearchDollar,
   FaComments,
 } from "react-icons/fa";
+import FAQ from "../../Component/Faq/Faq.jsx";
 const Home = () => {
   const [data, setData] = useState([]);
   const fetch = useAxios();
@@ -196,6 +197,9 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </section>
+      <section className="faq">
+        <FAQ />
       </section>
     </>
   );

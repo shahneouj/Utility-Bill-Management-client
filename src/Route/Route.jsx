@@ -9,6 +9,7 @@ import BillDetails from "../Page/BillDetails/BillDetails";
 import Loader from "../Component/Loader/Loader";
 import About from "../Page/About/About";
 import ContactUs from "../Page/ContactUs/ContactUs";
+import PrivacyPolicy from "../Page/PrivacyPoliciy/PrivacyPolicy";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       }, {
         path: "/contactus",
         element: <ContactUs />,
+      }
+      , {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
       }
     ],
   },

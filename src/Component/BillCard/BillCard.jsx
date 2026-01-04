@@ -1,14 +1,35 @@
-import React from "react";
+
+import { useEffect, useState } from "react";
 import { FaMapMarkerAlt, FaCalendarAlt, FaTags } from "react-icons/fa";
 import { NavLink } from "react-router";
 
 const BillCard = ({ bill }) => {
   const { title, category, location, date, image, _id } = bill;
+  const [imageLoad, setImageLoad] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setImageLoad(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 border border-base-200 w-full max-w-sm">
+    <div className="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 border border-base-200 w-full max-w-sm hover-3d">
       <div className="card-body text-base-content">
-        <img src={image} alt="" className="max-h-[250px]" />
+        {
+          imageLoad ? (
+            <div className="skeleton  w-32 h-32 rounded-t-xl"></div>
+          ) : (
+            <img
+              src={image}
+              alt={title}
+              onLoad={() => setImageLoad(false)}
+              className="max-h-[250px] w-full object-cover rounded-t-xl"
+            />
+          )
+        }
+
         <h2 className="card-title text-lg font-semibold">{title}</h2>
         <div className="space-y-2 mt-2 text-sm">
           <div className="flex items-center gap-2">
