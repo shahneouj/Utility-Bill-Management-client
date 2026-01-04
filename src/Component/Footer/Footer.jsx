@@ -5,8 +5,8 @@ const Footer = () => {
     `link link-hover ${isActive ? "text-primary font-semibold" : ""}`;
 
   return (
-    <footer className="bg-base-200 text-base-content p-10">
-      <div className="footer footer-max sm:footer-horizontal">
+    <footer className="bg-base-200 text-base-content p-10 mt-10">
+      <div className="footer grid md:grid-cols-4 footer-max footer-vertical">
         {/* Logo & Description */}
         <aside>
           <NavLink to="/" className="text-2xl">

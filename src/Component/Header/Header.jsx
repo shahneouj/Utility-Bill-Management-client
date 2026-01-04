@@ -51,12 +51,6 @@ const Header = () => {
               Bills
             </NavLink>
 
-            {user && (
-              <NavLink to="/my-bills" className={navClass}>
-                <FiFileText />
-                My Bills
-              </NavLink>
-            )}
 
             <NavLink to="/about" className={navClass}>
               <FiInfo />
@@ -73,14 +67,38 @@ const Header = () => {
           <div className="flex items-center gap-3">
             {user ? (
               <>
-                <img
-                  src={user.photoURL}
-                  title={user.displayName}
-                  className="w-9 h-9 rounded-full border"
-                />
+
+
+                <div className="dropdown dropdown-bottom dropdown-end">
+                  <div tabIndex={0} role="button" className=""><div className="avatar">
+                    <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
+                      <img
+                        src={user.photoURL}
+                        title={user.displayName}
+                        className=""
+                      />
+                    </div>
+                  </div></div>
+                  <ul tabIndex="-1" className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-lg">
+                    <li>
+                      <NavLink to="/dashbord" className={navClass}>
+                        <FiFileText />
+                        Overview
+                      </NavLink>
+                      {/* /dashbord */}
+                    </li>
+                    <li>
+                      <NavLink to="/dashbord/my-bills" className={navClass}>
+                        <FiFileText />
+                        My Bills
+                      </NavLink>
+                      {/* /dashbord */}
+                    </li>
+                  </ul>
+                </div>
                 <button
                   onClick={handelLogout}
-                  className="btn btn-sm btn-primary flex items-center gap-1"
+                  className="btn btn-sm btn-primary text-primary-content flex items-center gap-1"
                 >
                   <FiLogOut />
                   Sign out

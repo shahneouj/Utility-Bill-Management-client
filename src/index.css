@@ -45,11 +45,11 @@ body {
 
 section,
 .footer-max {
-  @apply max-w-[1280px] mx-auto px-5 md:px-0 py-20;
+  @apply max-w-[1280px] mx-auto px-5 md:px-0 py-20 mt-10;
 }
 
 .full-section {
-  @apply max-w-full pt-0 pb-0;
+  @apply max-w-full pt-0 pb-0 mt-0;
 }
 
 /*Custom styles*/

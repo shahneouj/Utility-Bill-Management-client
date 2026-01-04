@@ -198,6 +198,76 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <section className="py-16 px-10 mb-16 bg-primary text-primary-content">
+        <div className="container mx-auto px-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div>
+              <h3 className="text-4xl font-bold">25K+</h3>
+              <p>Active Users</p>
+            </div>
+            <div>
+              <h3 className="text-4xl font-bold">120K+</h3>
+              <p>Bills Paid</p>
+            </div>
+            <div>
+              <h3 className="text-4xl font-bold">99.9%</h3>
+              <p>Uptime</p>
+            </div>
+            <div>
+              <h3 className="text-4xl font-bold">100%</h3>
+              <p>Secure Payments</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-16 bg-base-100">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-10">Key Features</h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              "Secure Online Payments",
+              "Automated Bill Reminders",
+              "Detailed Usage Analytics",
+              "Multi-Utility Support",
+              "Instant Payment History",
+              "PDF Invoice Download",
+            ].map((feature, i) => (
+              <div key={i} className="card bg-base-200 shadow">
+                <div className="card-body text-center">
+                  <h3 className="font-semibold text-lg">{feature}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-16 bg-base-200">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-10">
+            Why Choose Bill Management?
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <ul className="space-y-4">
+              <li>✔ One dashboard for all utilities</li>
+              <li>✔ No hidden charges</li>
+              <li>✔ Government & private bill support</li>
+              <li>✔ Mobile-friendly & fast</li>
+            </ul>
+
+            <div className="card bg-base-100 shadow-xl">
+              <div className="card-body">
+                <p>
+                  We simplify your monthly bill payments so you can focus on what
+                  matters. Trusted by thousands across Bangladesh.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="faq">
         <FAQ />
       </section>

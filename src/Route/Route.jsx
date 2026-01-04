@@ -10,6 +10,10 @@ import Loader from "../Component/Loader/Loader";
 import About from "../Page/About/About";
 import ContactUs from "../Page/ContactUs/ContactUs";
 import PrivacyPolicy from "../Page/PrivacyPoliciy/PrivacyPolicy";
+import TermPage from "../Page/TermPage/TermPage";
+import Dashbord from "../Layout/Dashbord/Dashbord";
+import DashboardOverview from "../Page/DashBord/Overview/DashboardOverview";
+import ProfilePage from "../Page/DashBord/Profile/ProfilePage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -34,10 +38,6 @@ export const router = createBrowserRouter([
         element: <BillDetails />,
       },
       {
-        path: "/my-bills",
-        element: <MyBill></MyBill>,
-      },
-      {
         path: "/about",
         element: <About />,
       }, {
@@ -47,7 +47,28 @@ export const router = createBrowserRouter([
       , {
         path: "/privacy-policy",
         element: <PrivacyPolicy />,
+      }, {
+        path: "/terms",
+        element: <TermPage />,
       }
-    ],
-  },
+    ]
+
+  }, {
+    path: "/dashbord",
+    element: <Dashbord />,
+    children: [
+      {
+        index: true,
+        element: <DashboardOverview />
+      },
+      {
+        path: "my-bills",
+        element: <MyBill></MyBill>,
+      }, {
+        path: "profile",
+        element: <ProfilePage />,
+      }
+    ]
+
+  }
 ]);
